@@ -44,9 +44,9 @@ class RobotWorkDay():
 	-------
 	calculate_pay(day_minutes, night_minutes)
 		Calculates pay of this particular Day instance.
-	get_break_timings(self, time_of_last_break)
+	get_break_timings()
 		Generates all the break timings for this particular Day instance.
-	get_minutes_worked(self, break_timings)
+	get_minutes_worked(break_timings)
 		Generates minutes worked in the day and night.
 	"""
 
@@ -266,9 +266,9 @@ class RobotShiftStartDay(RobotWorkDay):
 	-------
 	calculate_pay(day_minutes, night_minutes)
 		Calculates pay of this particular Day instance.
-	get_break_timings(self)
+	get_break_timings()
 		Generates all the break timings for this particular Day instance.
-	get_minutes_worked(self, break_timings)
+	get_minutes_worked(break_timings)
 		Generates minutes worked in the day and night.
 	"""
 
@@ -511,9 +511,9 @@ class RobotShiftEndDay(RobotWorkDay):
 	-------
 	calculate_pay(day_minutes, night_minutes)
 		Calculates pay of this particular Day instance.
-	get_break_timings(self)
+	get_break_timings()
 		Generates all the break timings for this particular Day instance.
-	get_minutes_worked(self, break_timings)
+	get_minutes_worked(break_timings)
 		Generates minutes worked in the day and night.
 	"""
 	def __init__(
@@ -693,9 +693,9 @@ class RobotWorkHalfDay(RobotWorkDay):
 	-------
 	calculate_pay(day_minutes, night_minutes)
 		Calculates pay of this particular Day instance.
-	get_break_timings(self)
+	get_break_timings()
 		Generates all the break timings for this particular Day instance.
-	get_minutes_worked(self, break_timings)
+	get_minutes_worked(break_timings)
 		Generates minutes worked in the day and night.
 	"""
 
