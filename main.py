@@ -3,7 +3,7 @@ from workdays import (RobotWorkDay, RobotWorkHalfDay,
 	RobotShiftStartDay, RobotShiftEndDay, convert_to_datetime
 )
 from exceptions import InvalidShiftError
-import json
+import json 
 
 def load_json(json_obj):
 	"""
