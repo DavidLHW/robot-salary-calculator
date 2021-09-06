@@ -2,6 +2,7 @@ from datetime import timedelta
 from workdays import (RobotWorkDay, RobotWorkHalfDay,
 	RobotShiftStartDay, RobotShiftEndDay, convert_to_datetime
 )
+from exceptions import InvalidShiftError
 import json
 
 def load_json(json_obj):
@@ -211,9 +212,12 @@ def main():
 
 	shift_start = convert_to_datetime(shift.get("start"))
 	shift_end = convert_to_datetime(shift.get("end"))
-	
+
+	if shift_start > shift_end:
+		raise InvalidShiftError(shift_start, shift_end)
+
 	# if shift starts and ends on the same day, calculate pay with half-day
-	if shift_start.strftime("%Y%m%d") == shift_end.strftime("%Y%m%d"):
+	elif shift_start.strftime("%Y%m%d") == shift_end.strftime("%Y%m%d"):
 		value = calculate_half_day_pay(shift_start, shift_end, roboRate)
 
 	else:

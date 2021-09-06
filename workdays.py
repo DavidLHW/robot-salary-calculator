@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from exceptions import InvalidBreakTimeError
 
 def convert_to_datetime(iso_timestamp):
 	"""
@@ -44,9 +45,9 @@ class RobotWorkDay():
 	-------
 	calculate_pay(day_minutes, night_minutes)
 		Calculates pay of this particular Day instance.
-	get_break_timings()
+	get_break_timings(self, time_of_last_break)
 		Generates all the break timings for this particular Day instance.
-	get_minutes_worked(break_timings)
+	get_minutes_worked(self, break_timings)
 		Generates minutes worked in the day and night.
 	"""
 
@@ -266,9 +267,9 @@ class RobotShiftStartDay(RobotWorkDay):
 	-------
 	calculate_pay(day_minutes, night_minutes)
 		Calculates pay of this particular Day instance.
-	get_break_timings()
+	get_break_timings(self)
 		Generates all the break timings for this particular Day instance.
-	get_minutes_worked(break_timings)
+	get_minutes_worked(self, break_timings)
 		Generates minutes worked in the day and night.
 	"""
 
@@ -511,9 +512,9 @@ class RobotShiftEndDay(RobotWorkDay):
 	-------
 	calculate_pay(day_minutes, night_minutes)
 		Calculates pay of this particular Day instance.
-	get_break_timings()
+	get_break_timings(self)
 		Generates all the break timings for this particular Day instance.
-	get_minutes_worked(break_timings)
+	get_minutes_worked(self, break_timings)
 		Generates minutes worked in the day and night.
 	"""
 	def __init__(
@@ -693,9 +694,9 @@ class RobotWorkHalfDay(RobotWorkDay):
 	-------
 	calculate_pay(day_minutes, night_minutes)
 		Calculates pay of this particular Day instance.
-	get_break_timings()
+	get_break_timings(self)
 		Generates all the break timings for this particular Day instance.
-	get_minutes_worked(break_timings)
+	get_minutes_worked(self, break_timings)
 		Generates minutes worked in the day and night.
 	"""
 
@@ -919,28 +920,3 @@ class RobotWorkHalfDay(RobotWorkDay):
 				night_minutes -= self.break_duration_in_hours*60
 
 		return {"day_minutes": day_minutes, "night_minutes": night_minutes}
-
-
-class InvalidBreakTimeError(Exception):
-	"""
-	Exception raised for errors in the input `break_time`.
-
-	Attributes
-	----------
-	break_time : str
-		Input `break_time` which caused the error.
-	message : str
-		Explanation of the error.
-	"""
-
-	def __init__(self, break_time, message=None):
-		self.break_time = break_time
-		if not message:
-			self.message = "Time of last break given is invalid! \n\n"+\
-					"Check that your given break timing is the last break of the previous day."
-		else:
-			self.message = message
-		super().__init__(self.message)
-
-	def __str__(self):
-		return f'"{self.break_time}" -> {self.message}'
