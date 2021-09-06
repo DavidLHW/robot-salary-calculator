@@ -15,6 +15,21 @@ Your robot rates calculator needs to consider the following:
 - When rates switches between day and night rates, for a total of four different rates (weekday/weekend + day/night).
 - For every eight hours, the robot needs to take an hour of unpaid break (or part thereof) for planned system maintenance.
 
+### Features
+
+- Calculate pay based on work shift of Robot.
+- Accommodates partial day's work, up to an unlimited number of work days.
+- Differentiate weekdays & weekends with different daily rates.
+- Differentiate day & night with different minutely rates.
+- Robot takes 1 hour break for every 8 hours of work, which is accounted for.
+
+### Assumptions
+
+- There are 24 hours a day, 7 days a week and 2 weekends and 5 weekdays in a week.
+- Leap year occurs every 4 years and skips every 4 centuries.
+- Start of shift given always occurs before end of shift.
+- Start of the day is always after 00:00:00 and before end of the day, which is always before 23:59:59 of the same day.
+
 <!-- GETTING STARTED -->
 ## Getting Started
 
@@ -27,14 +42,14 @@ Python3.8 is recommended for this version. Check the full installation guide <a 
 ### Installation
 
 1. Clone the repo
-   ```sh
+   ```bash
    git clone https://github.com/DavidLHW/robot-salary-calculator.git
    ```
-   
+
 2. Update `input.json` with relevant input information. See <a href="#examples">Examples</a>.
 
-4. Run `main.py`
-   ```
+3. Run `main.py`
+   ```sh
    python3 ./main.py
    ```
 
@@ -42,7 +57,7 @@ Python3.8 is recommended for this version. Check the full installation guide <a 
 ## Examples
 
 Sample input:
-```
+```json
 {
 	"shift": {
 		"start": "2038-01-01T20:15:00",
@@ -75,6 +90,6 @@ Sample input:
 
 
 Sample output:
-```
+```json
 { "value": 13725 }
 ```
